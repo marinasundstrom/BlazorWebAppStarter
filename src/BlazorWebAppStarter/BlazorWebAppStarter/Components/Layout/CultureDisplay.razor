@@ -1,0 +1,66 @@
+@using System.Globalization
+@using Microsoft.AspNetCore.Localization
+@inject NavigationManager Navigation
+@inject IStringLocalizer<CultureDisplay> T
+
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false"><i
+            class="bi bi-globe"></i> <span class="ms-2">@T[currentUiCulture.Name]</span></a>
+    <ul class="dropdown-menu">
+        <EditForm name="culture-selector" FormName="CultureSelector" Model="@Model" OnSubmit="SetCulture" method="post"
+            Enhance>
+            <li><button type="submit" name="Model.Culture" value="en-US" class="dropdown-item">@T["en-US"]</button></li>
+            <li><button type="submit" name="Model.Culture" value="fr-FR" class="dropdown-item">@T["fr-FR"]</button></li>
+            <li><button type="submit" name="Model.Culture" value="sv-SE" class="dropdown-item">@T["sv-SE"]</button>
+            </li>
+        </EditForm>
+    </ul>
+</li>
+
+@code {
+    CultureInfo? currentUiCulture;
+
+    [CascadingParameter]
+    public HttpContext HttpContext { get; set; } = default!;
+
+    [SupplyParameterFromForm]
+    public CultureSelectorModel Model { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+        var cookie = HttpContext.Request.Cookies[CookieRequestCultureProvider.DefaultCookieName];
+
+        if (cookie is not null)
+        {
+            var cultures = CookieRequestCultureProvider.ParseCookieValue(cookie);
+            currentUiCulture = new CultureInfo(cultures.Cultures[0].ToString());
+
+            /*
+            if (cultures is not null)
+            {
+            CultureInfo.CurrentCulture = new CultureInfo(cultures.Cultures[0].ToString());
+            CultureInfo.CurrentUICulture = new CultureInfo(cultures.UICultures[0].ToString());
+            }*/
+        }
+    }
+
+    private void SetCulture()
+    {
+        currentUiCulture = new CultureInfo(Model.Culture);
+
+        HttpContext.Response.Cookies.Delete(CookieRequestCultureProvider.DefaultCookieName);
+        HttpContext.Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,
+        CookieRequestCultureProvider.MakeCookieValue(
+        new RequestCulture(
+        currentUiCulture,
+        currentUiCulture
+        )), new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) });
+
+        Navigation.Refresh(true);
+    }
+
+    public class CultureSelectorModel
+    {
+        public string Culture { get; set; }
+    }
+}

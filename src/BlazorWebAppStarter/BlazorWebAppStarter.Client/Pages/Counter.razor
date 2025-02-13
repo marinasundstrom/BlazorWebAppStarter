@@ -1,0 +1,20 @@
+﻿@page "/counter"
+@rendermode InteractiveWebAssembly
+@inject IStringLocalizer<Counter> Localizer
+
+<AppPageTitle>@Localizer["Title"]</AppPageTitle>
+
+<h1>@Localizer["Title"]</h1>
+
+<p role="status">@Localizer["CurrentCountIs", currentCount]</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">@Localizer["ClickMe"]</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}

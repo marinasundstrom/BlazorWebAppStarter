@@ -1,0 +1,37 @@
+﻿@inherits LayoutComponentBase
+
+<div class="app-container">
+    <NavMenu />
+
+    <main class="container px-md-4 flex-grow">
+        <article class="content">
+            @Body
+        </article>
+    </main>
+
+    <Footer />
+</div>
+
+<div id="blazor-error-ui" data-nosnippet>
+    An unhandled error has occurred.
+    <a href="." class="reload">Reload</a>
+    <span class="dismiss">🗙</span>
+</div>
+
+
+<style>
+    html,
+    body {
+        overflow: auto;
+    }
+
+    .app-container {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .flex-grow {
+        flex-grow: 1;
+    }
+</style>

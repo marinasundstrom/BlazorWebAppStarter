@@ -1,0 +1,52 @@
+﻿<header class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark shadow-sm">
+    <nav class="container-xxl px-3 px-md-4" aria-label="Main navigation">
+        <a class="navbar-brand" href="#">Awesome app</a>
+        <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar-collapse offcanvas-collapse bg-dark" id="navbarsExampleDefault">
+            <hr class="d-lg-none text-white-50 pt-0 mt-0" />
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                        <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="counter">
+                        <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="weather">
+                        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="auth">
+                        <span class="bi bi-lock-nav-menu" aria-hidden="true"></span> Auth Required
+                    </NavLink>
+                </li>
+            </ul>
+            @* <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form> *@
+            <ul class="navbar-nav">
+                <NavMenuDivider OnlyOnSmall="true" />
+
+                <LoginDisplay />
+
+                <NavMenuDivider OnlyOnSmall="true" />
+
+                <CultureDisplay />
+
+                <NavMenuDivider />
+
+                <ColorModeDisplay />
+            </ul>
+        </div>
+    </nav>
+</header>
