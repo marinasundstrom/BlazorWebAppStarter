@@ -22,3 +22,7 @@ Light mode
 <img src="screenshots/dark-mode.png" alt="Dark mode" height="300">
 
 Dark mode
+
+<img src="screenshots/menu-mobile.png" alt="Menu (mobile)" height="400">
+
+Menu (mobile)
