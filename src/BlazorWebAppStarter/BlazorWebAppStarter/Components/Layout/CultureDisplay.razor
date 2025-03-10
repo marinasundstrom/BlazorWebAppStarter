@@ -33,14 +33,14 @@
         if (cookie is not null)
         {
             var cultures = CookieRequestCultureProvider.ParseCookieValue(cookie);
-            currentUiCulture = new CultureInfo(cultures.Cultures[0].ToString());
-
-            /*
             if (cultures is not null)
             {
-            CultureInfo.CurrentCulture = new CultureInfo(cultures.Cultures[0].ToString());
-            CultureInfo.CurrentUICulture = new CultureInfo(cultures.UICultures[0].ToString());
-            }*/
+                currentUiCulture = new CultureInfo(cultures.Cultures[0].ToString());
+            }
+        }
+        else
+        {
+            currentUiCulture = new CultureInfo("en-US");
         }
     }
 
@@ -56,7 +56,7 @@
         currentUiCulture
         )), new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) });
 
-        Navigation.Refresh(true);
+        Navigation.Refresh();
     }
 
     public class CultureSelectorModel
