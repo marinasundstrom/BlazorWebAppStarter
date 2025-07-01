@@ -74,3 +74,11 @@ h1:focus {
 .form-floating>.form-control:focus::placeholder {
     text-align: start;
 }
+
+a#scrollToTop {
+    text-decoration: none;
+}
+
+a#scrollToTop:hover {
+    text-decoration: underline;
+}
