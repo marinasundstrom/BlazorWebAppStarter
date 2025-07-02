@@ -55,7 +55,7 @@
             <section>
                 <h3>Use another service to register.</h3>
                 <hr />
-                @* <ExternalLoginPicker /> *@
+                <ExternalLoginPicker />
             </section>
         </div>
     </div>
@@ -76,7 +76,7 @@
     {
         Input ??= new InputModel();
     }
-    
+
     public async Task RegisterUser(EditContext editContext)
     {
         var user = CreateUser();
