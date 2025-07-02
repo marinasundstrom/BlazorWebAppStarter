@@ -76,10 +76,9 @@
     {
         Input ??= new InputModel();
     }
+    
     public async Task RegisterUser(EditContext editContext)
     {
-        Input ??= new InputModel();
-
         var user = CreateUser();
 
         await UserStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
