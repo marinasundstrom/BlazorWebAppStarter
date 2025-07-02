@@ -26,3 +26,18 @@ Dark mode
 <img src="screenshots/menu-mobile.png" alt="Menu (mobile)" height="400">
 
 Menu (mobile)
+
+## ASP.NET Core Identity
+
+Default database provider is Sqlite, but it can be easily changed. 
+
+It's by default configured to require you to confirm your identity. But there is no such provider.
+
+Of course, you can turn these requirements off.
+
+To manually set the user as confirmed, use DB Browser for Sqlite:
+
+```
+EmailConfirmed = 1
+LockoutEnabled = 0
+```
