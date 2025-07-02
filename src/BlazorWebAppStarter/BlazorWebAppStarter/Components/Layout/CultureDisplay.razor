@@ -23,10 +23,12 @@
     public HttpContext HttpContext { get; set; } = default!;
 
     [SupplyParameterFromForm]
-    public CultureSelectorModel Model { get; set; } = new();
+    public CultureSelectorModel? Model { get; set; }
 
     protected override void OnInitialized()
     {
+        Model ??= new CultureSelectorModel();
+
         var cookie = HttpContext.Request.Cookies[CookieRequestCultureProvider.DefaultCookieName];
 
         if (cookie is not null)
